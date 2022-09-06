@@ -1,4 +1,3 @@
-const chat = require('./models/chat');
 const Chat = require('./models/chat');
 
 module.exports=function(io){
@@ -40,7 +39,7 @@ module.exports=function(io){
                 users[socket.nickname]=socket;
                 io.sockets.emit('username', Object.keys(users));
 
-                let messages = await chat.find({});
+                let messages = await Chat.find({});
                 socket.emit('load old msgs', messages);//se cargan los viejos mensajes.
             }
         });
