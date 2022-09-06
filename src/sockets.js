@@ -40,8 +40,7 @@ module.exports=function(io){
                 users[socket.nickname]=socket;
                 io.sockets.emit('username', Object.keys(users));
 
-                let messages = await chat.find({});
-                socket.emit('load old msgs', messages);//se cargan los viejos mensajes.
+                
             }
         });
 
@@ -75,11 +74,7 @@ module.exports=function(io){
                 }
             } else{
 
-                var newMsg = await new Chat({
-                    msg: data,
-                    nick:socket.nickname
-                });
-                await newMsg.save();//se guarda el esquema en la base de datos.
+              
 
                 io.sockets.emit('new message', {
                     msg: data,
