@@ -8,12 +8,13 @@ const mongoose = require('mongoose');
 
 const app = express();
 const port = process.env.PORT;
+const mongo = process.env.MONGODB_CNN;
 const server = http.createServer(app);
 const io = new Server(server);
 io.listen(server);
 
 //db connection
-mongoose.connect(process.env.MONGODB_CNN)
+mongoose.connect(mongo)
     .then(db=> console.log('db is connected'))
     .catch(err => console.log(err));
 
